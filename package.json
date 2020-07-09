@@ -20,5 +20,8 @@
     "mongoose": "^5.9.21",
     "nodemailer": "^6.4.10",
     "randomstring": "^1.1.5"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
