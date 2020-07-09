@@ -13,7 +13,7 @@ const newUser = async (name, mobileno, email, password, cb) => {
         .digest('hex');
 
     await createUser({ name, mobileno, email, passwordHash, token }, (err, result) => {
-        console.log(err, result);
+       // console.log(err, result);
 
         if (err) {
             cb(err, null)
@@ -56,10 +56,10 @@ const loaduser = async (token, cb) => {
 }
 
 const loadusersto = async (mobileno, token, cb) => {
-   // console.log({ mobileno, token });
+    // console.log({ mobileno, token });
     await loadUsersTo({ mobileno, token }, (err, result) => {
         //console.log(err, result);
-        
+
         if (err) {
             cb(err, null)
         } else if (result) {
@@ -71,11 +71,22 @@ const loadusersto = async (mobileno, token, cb) => {
 
 }
 
-const newTransaction = async (req, cb) => {
+const newTransaction = async (token, body, cb) => {
 
-    console.log(req.body);
+    const amount = body.amount;
+    const toid = body.to._id;
+    const tomobileno = body.to.mobileno;
+    const toname = body.to.name;
 
-
+    await newTx({ token, amount, toid, tomobileno, toname }, (err, result) => {
+        if (err) {
+            cb(err, null)
+        } else if (result) {
+            cb(null, result)
+        } else {
+            cb(null, null)
+        }
+    })
 }
 
 

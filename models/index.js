@@ -15,9 +15,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    passwordHash :{
-        type :String,
-        required : true
+    passwordHash: {
+        type: String,
+        required: true
     },
     token: {
         type: String,
@@ -25,38 +25,56 @@ const userSchema = new Schema({
     },
     txs: [{
         to: {
-            type: String,
+            type: Object,
             default: null
         },
         from: {
+            type: Object,
+            default: null
+        },
+        txhash: {
             type: String,
             default: null
         },
-        amount: String,
-        txid: String,
-        txat: String
+        amount: {
+            type: String,
+            default: null
+        },
+        txat: {
+            type: Date,
+            default: Date.now
+        }
     }]
 })
 
 const txSchema = new Schema({
     from: {
         type: String,
-        required: true
+        default: "",
     },
     to: {
         type: String,
-        required: true
+        default: "",
     },
     prevHash: {
-        type: String
+        type: String,
+        default: "",
+    },
+    rand: {
+        type: String,
+        default: "",
     },
     txhash: {
         type: String,
-        required: true,
+        default: "",
     },
     amount: {
         type: Number,
-        required: true
+        default: 0,
+    },
+    txat: {
+        type: Date,
+        default: Date.now
     }
 })
 

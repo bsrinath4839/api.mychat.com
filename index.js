@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/newuser', async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
     await newUser(req.body.name, req.body.mobileno, req.body.email, req.body.password, (err, result) => {
         if (err) {
@@ -84,8 +84,14 @@ app.post('/login', async (req, res) => {
 })
 
 app.post('/newtx', async (req, res) => {
-    if (req.headers.authtoken, req.body.email) {
-        await newTransaction(req, (err, result) => {
+    // console.log(req.body);
+    // console.log(req.headers.authtoken);
+
+
+    if (req.headers.authtoken) {
+        await newTransaction(req.headers.authtoken, req.body, (err, result) => {
+           // console.log("errrrr",err, "reeesult",result);
+            
             if (err) {
                 res.status(400).send({ 'err': err, 'result': result })
             } else if (result) {
