@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sudo service mongod start && nodemon index.js"
   },
   "author": "bsrinath4839",
   "license": "ISC",
